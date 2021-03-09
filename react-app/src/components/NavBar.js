@@ -5,6 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 const NavBar = ({ setAuthenticated }) => {
   return (
     <nav>
+      <a className="logo"></a>
       <ul>
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
@@ -22,8 +23,8 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
+          <NavLink to="/sign-up" exact={true} activeClassName="active">
+            Get Started
           </NavLink>
         </li>
         <li>
