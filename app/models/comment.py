@@ -13,11 +13,16 @@ class Comment(db.Model):
 
     post = db.relationship("Post", back_populates="comments")
     display_name = db.relationship("DisplayName", back_populates="comments")
-    
+    comment_likes = db.relationship("CommentLike", back_populates="comment")
+
     def to_dict(self):
         return {
             "id": self.id,
-            "post": self.post_id
-            "display_name": self.display_name_id
-            "comment": self.comment 
+            "postId": self.post_id,
+            "display_name": self.display_name_id,
+            "comment": self.comment,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "display_name": self.display_name.to_dict(),
+            "comment_likes": self.comment_likes.to_dict()
         }

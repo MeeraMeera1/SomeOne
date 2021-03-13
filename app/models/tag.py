@@ -9,12 +9,12 @@ class Tag(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    posts = db.relationship("Post",)
+    post = db.relationship("Post", back_populates="tag")
 
     def to_dict(self):
         return {
             "id": self.id,
-            "tag": self.tag
+            "tag": self.tag,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }

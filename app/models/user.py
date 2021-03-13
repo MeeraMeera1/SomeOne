@@ -14,10 +14,9 @@ class UserProfile(db.Model, UserMixin):
   bio = db.Column(db.Text)
   user_type = db.Column(db.Boolean)
   created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+  updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-  sent_mess = db.Relationship("DirectMessage", foreign_keys="DirectMessage.sender_id", back_populates="sender")
-  received_mess = db.Relationship("DirectMessage", foreign_keys="DirectMessage.receiver_id", back_populates="receiver")
-
+  displaynames = db.relationship("DisplayName", back_populates="user")
 
   @property
   def password(self):
@@ -40,5 +39,7 @@ class UserProfile(db.Model, UserMixin):
       "email": self.email,
       "birthday": self.birthday,
       "bio": self.bio,
-      "created_at": self.created_at
+      "user_type": self.user_type,
+      "created_at": self.created_at,
+      "updated_at": self.updated_at
     }
