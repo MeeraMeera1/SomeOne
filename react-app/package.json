@@ -9,6 +9,7 @@
     "http-proxy-middleware": "^1.0.5",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "styled-components": "^5.2.1"
