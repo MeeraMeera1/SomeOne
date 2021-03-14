@@ -19,6 +19,7 @@ const FirstPageTextCon = styled.div`
     height: 200px;
 `;
 
+const FriendGroupCon = styled.div ``;
 
 export function FirstPage(props) {
     const { children } = props;
