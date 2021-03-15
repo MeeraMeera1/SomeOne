@@ -48,21 +48,15 @@ export const createPost = (newpost) => async (dispatch) => {
   formData.append("imgUrl", image);
   formData.append("tag", tagId);
   formData.append("displayname", displayNameId);
-  if (image) {
-    for (const list of image) {
-      for (let i = 0; i < list.length; i++) {
-        formData.append("images", list[i]);
-      }
-    }
-  }
+ if (image) formData.append("image", image);
   const response = await fetch("/api/posts/", {
     method: "POST",
     body: formData,
   });
   if (!response.ok) throw response;
-  const newpost = await response.json();
-  if (!post.errors) {
-    dispatch(setPost(newpost));
+  const postdata = await response.json();
+  if (!postdata.errors) {
+    dispatch(setPost(postdata));
   }
   return post;
 };
@@ -74,13 +68,7 @@ export const updatePost = (fixpost) => async (dispatch) => {
   formData.append("imgUrl", image);
   formData.append("tag", tagId);
   formData.append("displayname", displayNameId);
-  if (image) {
-    for (const list of image) {
-      for (let i = 0; i < list.length; i++) {
-        formData.append("images", list[i]);
-      }
-    }
-  }
+  if (image) formData.append("image", image);
   const response = await fetch(`/api/posts/${postId}`, {
     method: "PUT",
     body: formData,
