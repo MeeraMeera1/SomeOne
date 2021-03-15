@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import Post from "./Post";
+import Post from "./post";
 import "./posts.css";
 
 const Posts = () => {

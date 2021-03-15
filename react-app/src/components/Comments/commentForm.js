@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./comments.css";
-import { createComment } from "../../store/comment";
-import { BiComment } from "react-icons";
+import { newComment } from "../../store/comment";
+import { BiComment } from "react-icons/bi";
 
 const CommentForm = (props) => {
   const [comment, setComment] = useState("");
@@ -13,7 +13,7 @@ const CommentForm = (props) => {
   const formSubmitHandler = async (e) => {
     e.preventDefault();
     if (!comment) return alert("there is no content");
-    dispatch(createComment( postId, comment ));
+    dispatch(newComment( postId, comment ));
   };
 
   return (

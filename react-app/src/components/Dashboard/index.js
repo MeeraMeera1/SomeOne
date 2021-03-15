@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Posts from "../Posts";
 import { useDispatch } from "react-redux";
-import "./LandingPage.css";
+import "./dash.css";
 import * as commentActions from "../../store/comment";
 import * as postActions from "../../store/post";
 import { getUsers } from "../../store/user";

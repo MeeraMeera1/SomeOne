@@ -1,12 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import NavBar from "../Navbar";
 import { PageContainer } from "../PageContainer";
 import { FirstPage } from "./FirstPage";
 
-export function HomePage(props) {
-    return (
-        <PageContainer>
-            <FirstPage />
-        </PageContainer>
-    )
+const HomePage = () => {
+  return (
+    <PageContainer>
+      <FirstPage>
+        <NavBar />
+      </FirstPage>
+    </PageContainer>
+  );
 }
+
+export default HomePage;

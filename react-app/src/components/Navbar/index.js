@@ -16,6 +16,12 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
+        <li>
+          <SignUpForm />
+        </li>
+        <li>
+          <LoginForm />
+        </li>
         {user ? (
           <>
             <li>
@@ -27,16 +33,7 @@ const NavBar = () => {
               <LogoutButton />
             </li>
           </>
-        ) : (
-          <>
-            <li>
-              <SignUpForm />
-            </li>
-            <li>
-              <LoginForm />
-            </li>
-          </>
-        )}
+        ) : null}
       </ul>
     </nav>
   );

@@ -18,7 +18,7 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    dispatch(login(displayname, password)).then((errors) => {
+    dispatch(login(displayName, password)).then((errors) => {
       setErrors(errors);
     });
   };

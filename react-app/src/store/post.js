@@ -44,12 +44,12 @@ export const getPostById = (id) => async (dispatch) => {
 export const createPost = (newpost) => async (dispatch) => {
   const { post, image, tagId, displayNameId } = newpost;
   const formData = new FormData();
-  formData.append("post", title);
+  formData.append("post", post);
   formData.append("imgUrl", image);
   formData.append("tag", tagId);
   formData.append("displayname", displayNameId);
-  if (images) {
-    for (const list of images) {
+  if (image) {
+    for (const list of image) {
       for (let i = 0; i < list.length; i++) {
         formData.append("images", list[i]);
       }
@@ -60,9 +60,9 @@ export const createPost = (newpost) => async (dispatch) => {
     body: formData,
   });
   if (!response.ok) throw response;
-  const post = await response.json();
+  const newpost = await response.json();
   if (!post.errors) {
-    dispatch(setPost(post));
+    dispatch(setPost(newpost));
   }
   return post;
 };
@@ -70,12 +70,12 @@ export const createPost = (newpost) => async (dispatch) => {
 export const updatePost = (fixpost) => async (dispatch) => {
   const { post, image, tagId, displayNameId, postId } = fixpost;
   const formData = new FormData();
-  formData.append("post", title);
+  formData.append("post", post);
   formData.append("imgUrl", image);
   formData.append("tag", tagId);
   formData.append("displayname", displayNameId);
-  if (images) {
-    for (const list of images) {
+  if (image) {
+    for (const list of image) {
       for (let i = 0; i < list.length; i++) {
         formData.append("images", list[i]);
       }
@@ -86,9 +86,9 @@ export const updatePost = (fixpost) => async (dispatch) => {
     body: formData,
   });
   if (!response.ok) throw response;
-  const post = await response.json();
+  const updatepost = await response.json();
   if (!post.errors) {
-    dispatch(setPost(post));
+    dispatch(setPost(updatepost));
   }
   return post;
 };
