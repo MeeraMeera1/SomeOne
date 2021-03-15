@@ -43,12 +43,12 @@ export const getPostById = (id) => async (dispatch) => {
 };
 
 export const createPost = (post) => async (dispatch) => {
-  const { title, body, images, userId, communityId } = post;
+  const { post, image, tagId, displayNameId } = post;
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("body", body);
-  formData.append("user_id", userId);
-  formData.append("community_id", communityId);
+  formData.append("post", title);
+  formData.append("imgUrl", image);
+  formData.append("tag", tagId);
+  formData.append("displayname", displayNameId);
   if (images) {
     for (const list of images) {
       for (let i = 0; i < list.length; i++) {
@@ -56,30 +56,25 @@ export const createPost = (post) => async (dispatch) => {
       }
     }
   }
-
-  try {
-    const res = await fetch("/api/posts/", {
+  const response = await fetch("/api/posts/", {
       method: "POST",
       body: formData,
     });
-    if (!res.ok) throw res;
-    const post = await res.json();
+    if (!response.ok) throw response;
+    const post = await response.json();
     if (!post.errors) {
       dispatch(setPost(post));
     }
     return post;
-  } catch (e) {
-    return e;
-  }
 };
 
 export const updatePost = (post) => async (dispatch) => {
-  const { title, body, images, postId, userId, communityId } = post;
+  const { post, image, tagId, displayNameId, postId } = post;
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("body", body);
-  formData.append("user_id", userId);
-  formData.append("community_id", communityId);
+  formData.append("post", title);
+  formData.append("imgUrl", image);
+  formData.append("tag", tagId);
+  formData.append("displayname", displayNameId);
   if (images) {
     for (const list of images) {
       for (let i = 0; i < list.length; i++) {
@@ -87,89 +82,36 @@ export const updatePost = (post) => async (dispatch) => {
       }
     }
   }
-
-  try {
-    const res = await fetch(`/api/posts/${postId}`, {
+  const response = await fetch(`/api/posts/${postId}`, {
       method: "PUT",
       body: formData,
     });
-    if (!res.ok) throw res;
-    const post = await res.json();
+    if (!response.ok) throw response;
+    const post = await response.json();
     if (!post.errors) {
       dispatch(setPost(post));
     }
     return post;
-  } catch (e) {
-    return e;
-  }
 };
 
 export const deletePost = (postId) => async (dispatch) => {
-  try {
-    const res = await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}`, {
       method: "DELETE",
     });
-    if (!res.ok) throw res;
-    const post = await res.json();
+    if (!response.ok) throw response;
+    const post = await response.json();
     if (!post.errors) {
-      dispatch(setPost(post));
+      dispatch(remove(post));
     }
     return post;
-  } catch (e) {
-    return e;
-  }
-};
-
-export const createComment = (comment, postId) => async (dispatch) => {
-  const res = await fetch(`/api/posts/${postId}/comments`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(comment),
-  });
-  const post = await res.json();
-  if (!post.errors) {
-    dispatch(setPost(post));
-  }
-  return post;
-};
-
-export const updateComment = (comment) => async (dispatch) => {
-  const res = await fetch(`/api/comments/${comment.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(comment),
-  });
-  const post = await res.json();
-  if (!post.errors) {
-    dispatch(setPost(post));
-  }
-  return post;
-};
-
-export const deleteComment = (commentId) => async (dispatch) => {
-  const res = await fetch(`/api/comments/${commentId}`, {
-    method: "DELETE",
-  });
-  const post = await res.json();
-  if (!post.errors) {
-    dispatch(setPost(post));
-  }
-  return post;
 };
 
 const initialState = {
   posts: {},
-  max: null,
 };
 
-const postsReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MORE_POSTS:
-      return { ...state, posts: { ...state.posts, ...action.posts } };
     case SET_POSTS:
       return { ...state, posts: { ...action.posts } };
     case SET_POST:
@@ -177,11 +119,9 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         posts: { [action.post.id]: action.post, ...state.posts },
       };
-    case SET_MAX:
-      return { ...state, max: action.number };
     default:
       return state;
   }
 };
 
-export default postsReducer;
+export default postReducer;
