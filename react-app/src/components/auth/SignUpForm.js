@@ -1,29 +1,42 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import { useDispatch, useSelector } from "react-redux";
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
-  const [username, setUsername] = useState("");
+const SignUpForm = () => {
+  const dispatch = useDispatch();
+  const modalDisplay = useSelector((state) => state.modal.display);
+
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState();
+  const [bio, setBio] = useState();
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      dispatch(signUp(displayName, email, birthday, bio, password)).then(
+        (errors) => {
+          setErrors(errors);
+        }
+      );
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateDisplayName = (e) => {
+    setDisplayName(e.target.value);
   };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateBirthday = (e) => {
+    setBirthday(e.target.value);
+  };
+
+  const updateBio = (e) => {
+    setBio(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -34,51 +47,70 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setRepeatPassword(e.target.value);
   };
 
-  if (authenticated) {
-    return <Redirect to="/" />;
-  }
-
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    <>
+      <button onClick={() => dispatch(ShowModal())}>Log In</button>
+      {modalDisplay ? (
+        <form onSubmit={onSignUp}>
+          <div>
+            <label>Display Name</label>
+            <input
+              type="text"
+              name="displayName"
+              onChange={updateDisplayName}
+              value={displayName}
+            ></input>
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              type="text"
+              name="email"
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
+          <div>
+            <label>Birthday</label>
+            <input
+              type="date"
+              name="birthday"
+              onChange={updateBirthday}
+              value={birthday}
+            ></input>
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </div>
+          <div>
+            <label>Bio</label>
+            <input
+              type="text"
+              name="bio"
+              onChange={updateBio}
+              value={bio}
+            ></input>
+          </div>
+          <div>
+            <label>Repeat Password</label>
+            <input
+              type="password"
+              name="repeat_password"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+      ) : null}
+    </>
   );
 };
 
