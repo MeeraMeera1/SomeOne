@@ -3,7 +3,7 @@ const USER = "sesssion/USER";
 const setSession = (user) => ({ type: USER, user });
 
 export const authenticate = () => async (dispatch) => {
-  const response = await window.fetch("/api/auth/", {
+  const response = await fetch("/api/auth/", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -14,7 +14,7 @@ export const authenticate = () => async (dispatch) => {
 };
 
 export const login = (displayName, password) => async (dispatch) => {
-  const response = await window.fetch("/api/auth/login", {
+  const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const login = (displayName, password) => async (dispatch) => {
 };
 
 export const signUp = (username, email, password) => async (dispatch) => {
-  const response = await window.fetch("/api/auth/signup", {
+  const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  await window.fetch("/api/auth/logout", {
+  await fetch("/api/auth/logout", {
     headers: {
       "Content-Type": "application/json",
     },

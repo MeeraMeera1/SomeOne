@@ -7,3 +7,15 @@ const setUser = (user) => {
         user
     }
 }
+
+const createUser = (user) => {
+    return {
+        type: CREATE_USER,
+        user
+    }
+}
+
+export const getUsers = () => async(dispatch) => {
+    const response = await fetch('/api/users/');
+    if 
+}
