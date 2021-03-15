@@ -70,4 +70,16 @@ def specific_post(post_id):
         return post.to_dict()
     return post.to_dict()
 
-    
+@post_routes.route('/<int:post_id>/comments', methods=["POST"])
+def create_comment(post_id):
+    post = Post.query.get(post_id)
+    form = CreateCommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment()
+        form.populate_obj(comment)
+        db.session.add(comment)
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
+
