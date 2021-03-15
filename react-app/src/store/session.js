@@ -13,13 +13,13 @@ export const authenticate = () => async (dispatch) => {
   dispatch(setSession(user));
 };
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (displayName, password) => async (dispatch) => {
   const response = await window.fetch("/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ displayName, password }),
   });
   const user = await response.json();
   if (user.errors) {
