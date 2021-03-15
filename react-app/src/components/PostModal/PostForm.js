@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getSignedRequest } from "../../services/upload";
-import { createPost, editPost, deletePost } from "../../Store/posts";
+import { createPost, updatePost, deletePost } from "../../store/post";
 import "./PostForm.css";
 
-function PostForm({ edit, post, setShowModal }) {
+function PostForm({ edit, post }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [src, setSrc] = useState("");
