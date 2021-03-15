@@ -15,7 +15,7 @@ const setUsers = (users) => {
   };
 };
 
-export const getUser = () => async (dispatch) => {
+export const getUser = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/${userId}`);
   if (response.ok) {
     const user = await response.json();
@@ -31,6 +31,10 @@ export const getUsers = () => async (dispatch) => {
     dispatch(setUsers(users));
     return users;
   }
+};
+
+const initialState = {
+  users: {},
 };
 
 const userReducer = (state = initialState, action) => {

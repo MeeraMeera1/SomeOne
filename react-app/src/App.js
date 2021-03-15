@@ -1,6 +1,11 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { HomePage } from "./components/HomePage";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import HomePage from "./components/HomePage";
+import DashBoard from "./components/Dashboard";
+
+import { authenticate } from "./store/session"
+// import NavBar from "./components/Navbar";
 // import React, { useState, useEffect } from "react";
 // import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import LoginForm from "./components/auth/LoginForm";
@@ -12,6 +17,21 @@ import { HomePage } from "./components/HomePage";
 // import { authenticate } from "./services/auth";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.session.user);
+  // const loaded = useSelector((state) => state.session.loaded);
+
+
+  useEffect(() => {
+    dispatch(authenticate());
+  }, [dispatch]);
+
+  if (user) {
+    return null;
+  }
+
+
   // const [authenticated, setAuthenticated] = useState(false);
   // const [loaded, setLoaded] = useState(false);
 
@@ -31,6 +51,15 @@ function App() {
 
   return (
     <BrowserRouter>
+    {/* <NavBar /> */}
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/dashboard" exact>
+          <DashBoard />
+        </Route>
+      </Switch>
       {/* <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/login" exact={true}>
@@ -52,7 +81,6 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch> */}
-      <HomePage />
     </BrowserRouter>
   );
 }

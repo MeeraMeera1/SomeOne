@@ -41,9 +41,7 @@ const FriendGroupCon = styled.div`
   }
 `;
 
-export function FirstPage(props) {
-    const { children } = props;
-
+export function FirstPage() {
     return (
       <PageContainer>
         <FirstPageTextCon>

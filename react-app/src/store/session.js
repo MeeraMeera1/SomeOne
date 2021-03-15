@@ -29,15 +29,17 @@ export const login = (displayName, password) => async (dispatch) => {
   dispatch(setSession(user));
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (displayName, email, birthday, bio, password) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username,
+      displayName,
       email,
+      birthday,
+      bio,
       password,
     }),
   });
