@@ -1,0 +1,21 @@
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: darkgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-background form {
+  width: 500px;
+  height: 500px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
