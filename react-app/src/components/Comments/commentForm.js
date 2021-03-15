@@ -1,34 +1,29 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./comments.css";
-import smilyIcon from "../../images/icons/insta_smily_face_icon.png";
-import { createComment } from "../../Store/comments";
+import { createComment } from "../../store/comment";
+import { BiComment } from "react-icons";
 
 const CommentForm = (props) => {
-  const [content, setContent] = useState("");
+  const [comment, setComment] = useState("");
   const user = useSelector((state) => state.session.user);
   const postId = props.postId;
   const dispatch = useDispatch();
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
-    if (!content) return alert("there is no content");
-    const userId = user.id;
-    dispatch(createComment(userId, postId, content));
+    if (!comment) return alert("there is no content");
+    dispatch(createComment( postId, comment ));
   };
 
   return (
     <div className="comment-form__container">
-      <img
-        alt="smile emoji"
-        className="comment-form__icon"
-        src={smilyIcon}
-      ></img>
+    <BiComment />
       <form className="commentform" onSubmit={formSubmitHandler}>
         <input
           className="comment-form__input"
           placeholder="Add a comment..."
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => setComment(e.target.value)}
         ></input>
         <button type="submit" className="comment-form__button">
           Post

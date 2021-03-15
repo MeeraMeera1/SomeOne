@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
   const modalDisplay = useSelector((state) => state.modal.display);
 
   const [displayName, setDisplayName] = useState("");
@@ -46,6 +47,10 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  if (user) {
+    return <Redirect to="/dash" />;
+  }
 
   return (
     <>
