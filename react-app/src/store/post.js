@@ -42,8 +42,8 @@ export const getPostById = (id) => async (dispatch) => {
   return post;
 };
 
-export const createPost = (post) => async (dispatch) => {
-  const { post, image, tagId, displayNameId } = post;
+export const createPost = (newpost) => async (dispatch) => {
+  const { post, image, tagId, displayNameId } = newpost;
   const formData = new FormData();
   formData.append("post", title);
   formData.append("imgUrl", image);
@@ -68,8 +68,8 @@ export const createPost = (post) => async (dispatch) => {
     return post;
 };
 
-export const updatePost = (post) => async (dispatch) => {
-  const { post, image, tagId, displayNameId, postId } = post;
+export const updatePost = (fixpost) => async (dispatch) => {
+  const { post, image, tagId, displayNameId, postId } = fixpost;
   const formData = new FormData();
   formData.append("post", title);
   formData.append("imgUrl", image);
@@ -119,6 +119,10 @@ const postReducer = (state = initialState, action) => {
         ...state,
         posts: { [action.post.id]: action.post, ...state.posts },
       };
+    case REMOVE_POST:
+      const newState = { ...state };
+      delete newState[action.id];
+      return newState;
     default:
       return state;
   }
