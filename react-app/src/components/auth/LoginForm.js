@@ -13,18 +13,18 @@ const LoginForm = () => {
   const modalDisplay = useSelector((state) => state.modal.display);
 
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
     e.preventDefault();
-    dispatch(login(email, password)).then((errors) => {
+    dispatch(login(displayname, password)).then((errors) => {
       setErrors(errors);
     });
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
+  const updateDisplayName = (e) => {
+    setDisplayName(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -47,13 +47,13 @@ const LoginForm = () => {
               ))}
             </div>
             <div>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Display Name</label>
               <input
-                name="email"
+                name="displayName"
                 type="text"
-                placeholder="Email"
-                value={email}
-                onChange={updateEmail}
+                placeholder="Who are you"
+                value={displayName}
+                onChange={updateDisplayName}
               />
             </div>
             <div>

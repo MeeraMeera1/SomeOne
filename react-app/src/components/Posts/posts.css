@@ -1,0 +1,137 @@
+* {
+  font-family: "proxima-nova", sans-serif;
+  background-color: white;
+}
+
+.post__container {
+  background-color: lightgray;
+  width: 50rem;
+  border: 1px solid lightgray;
+  box-shadow: 0px 0px 2px lightgray;
+  border-radius: 0.2rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.post__header {
+  display: grid;
+  grid-template-columns: auto 6fr auto;
+  padding: 1rem;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.post__username {
+  padding-left: 0.6rem;
+}
+
+.post__username:hover {
+  text-decoration: underline;
+}
+
+.post__profile-pic {
+  background-color: pink;
+  border-radius: 50%;
+  height: 3rem;
+  width: 3rem;
+}
+
+.post__profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.post__image {
+  max-width: 50rem;
+  max-height: 52rem;
+  overflow: hidden;
+}
+
+.post__img-tag {
+  width: 100%;
+}
+
+.post__icons {
+  display: grid;
+  grid-template-columns: auto auto auto 3fr;
+}
+
+.post__icon {
+  padding: 0.6rem;
+  height: 2.5rem;
+}
+
+.post__icon img {
+  height: 100%;
+}
+
+.comment__container {
+  font-size: 1.4rem;
+  padding: 1rem;
+  padding-top: 0rem;
+  border-bottom: 0.5px solid rgb(235, 231, 231);
+}
+
+.post__title {
+  width: 100%;
+}
+
+.post__user {
+  font-weight: bold;
+  display: inline-block;
+  padding: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.post__description {
+  display: inline-block;
+}
+
+.post__createdAt {
+  font-size: 1rem;
+  color: rgb(168, 167, 167);
+  padding-top: 0.8rem;
+}
+.editpost__dropdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  z-index: 99;
+}
+
+.editpost__list {
+  margin-left: -17.6rem;
+  list-style-type: none;
+  position: absolute;
+  top: 150%;
+  border: 1px #f6f6f6 solid;
+  border-radius: 0.6rem;
+  background-color: white;
+  animation: revealMenu 400ms ease-in-out forwards;
+  transform-origin: top;
+  box-sizing: border-box;
+  width: 20rem;
+  height: 8rem;
+  text-align: right;
+  padding-left: 0rem;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+@keyframes revealMenu {
+  0% {
+      transform: scaleY(0);
+  }
+  80% {
+      transform: scaleY(1.1);
+  }
+  100% {
+      transform: scaleY(1);
+  }
+}
