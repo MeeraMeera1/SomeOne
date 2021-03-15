@@ -12,14 +12,33 @@ const PageContainer = styled.div`
   background-color: #e4e5c3;
   background-position: 0px -150px;
   background-size: cover;
+  align-content: space-between;
 `;
 
 const FirstPageTextCon = styled.div`
-    width: 200px;
-    height: 200px;
+    width: 90em;
+    height: 15em;
+    position: relative;
+    top: 80px;
+
+    img {
+      position: absolute;
+      bottom:25px;
+    }
 `;
 
-const FriendGroupCon = styled.div ``;
+const FriendGroupCon = styled.div `
+  width: 99em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
+  img {
+    width: 99em;
+  }
+  
+
+`;
 
 export function FirstPage(props) {
     const { children } = props;
@@ -29,7 +48,9 @@ export function FirstPage(props) {
         <FirstPageTextCon>
           <img src={FirstPageText} alt="text" />
         </FirstPageTextCon>
-        <img src={FriendGroup} alt="friends" />
+        <FriendGroupCon>
+          <img src={FriendGroup} alt="friends" />
+        </FriendGroupCon>
       </PageContainer>
     );
 }
