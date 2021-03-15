@@ -1,6 +1,6 @@
 const SET_POSTS = "post/SET_POSTS";
 const SET_POST = "post/SET_POST";
-const REMOVE_POST = "post/REMOVE_POST"
+const REMOVE_POST = "post/REMOVE_POST";
 
 const setPost = (post) => {
   return {
@@ -17,20 +17,19 @@ const setPosts = (posts) => {
 };
 
 const remove = (postId) => {
-    return {
-      type: REMOVE_POST,
-      postId,
-    }
-}
-
+  return {
+    type: REMOVE_POST,
+    postId,
+  };
+};
 
 export const getPosts = () => async (dispatch) => {
-    const response = await fetch("/api/posts");
-    if (response.ok) {
-        const posts = await response.json();
-        dispatch(setPosts(posts));
-        return posts;
-    }
+  const response = await fetch("/api/posts");
+  if (response.ok) {
+    const posts = await response.json();
+    dispatch(setPosts(posts));
+    return posts;
+  }
 };
 
 export const getPostById = (id) => async (dispatch) => {
@@ -57,15 +56,15 @@ export const createPost = (newpost) => async (dispatch) => {
     }
   }
   const response = await fetch("/api/posts/", {
-      method: "POST",
-      body: formData,
-    });
-    if (!response.ok) throw response;
-    const post = await response.json();
-    if (!post.errors) {
-      dispatch(setPost(post));
-    }
-    return post;
+    method: "POST",
+    body: formData,
+  });
+  if (!response.ok) throw response;
+  const post = await response.json();
+  if (!post.errors) {
+    dispatch(setPost(post));
+  }
+  return post;
 };
 
 export const updatePost = (fixpost) => async (dispatch) => {
@@ -83,27 +82,27 @@ export const updatePost = (fixpost) => async (dispatch) => {
     }
   }
   const response = await fetch(`/api/posts/${postId}`, {
-      method: "PUT",
-      body: formData,
-    });
-    if (!response.ok) throw response;
-    const post = await response.json();
-    if (!post.errors) {
-      dispatch(setPost(post));
-    }
-    return post;
+    method: "PUT",
+    body: formData,
+  });
+  if (!response.ok) throw response;
+  const post = await response.json();
+  if (!post.errors) {
+    dispatch(setPost(post));
+  }
+  return post;
 };
 
 export const deletePost = (postId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) throw response;
-    const post = await response.json();
-    if (!post.errors) {
-      dispatch(remove(post));
-    }
-    return post;
+  const response = await fetch(`/api/posts/${postId}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) throw response;
+  const post = await response.json();
+  if (!post.errors) {
+    dispatch(remove(post));
+  }
+  return post;
 };
 
 const initialState = {
