@@ -2,14 +2,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import session from "./session";
-import modal from "./modal";
+import loginModal from "./loginModal";
+import signupModal from "./signupModal";
 import user from "./user";
 import post from "./post";
 import comment from "./comment";
 
 const rootReducer = combineReducers({
   session,
-  modal,
+  loginModal,
+  signupModal,
   user,
   post,
   comment

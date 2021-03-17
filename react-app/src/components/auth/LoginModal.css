@@ -4,11 +4,13 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: darkgrey;
+  background-color: rgba(100,100,100,.3);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
+
 
 .modal-background form {
   width: 500px;
@@ -18,4 +20,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+  flex-direction: column;
 }

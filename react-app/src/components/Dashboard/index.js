@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Posts from "../Posts";
+// import Posts from "../Posts";
 import { useDispatch } from "react-redux";
 import "./dash.css";
 import * as commentActions from "../../store/comment";
@@ -19,7 +19,7 @@ const DashBoard = () => {
     <>
       <div className="landing__container">
         <div className="posts__feed">
-          <Posts />
+          {/* <Posts /> */}
         </div>
       </div>
     </>
