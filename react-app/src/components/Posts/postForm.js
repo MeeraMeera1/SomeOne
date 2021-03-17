@@ -8,14 +8,39 @@ import { createPost } from "../../store/post";
 const PostForm = () => {
   const dispatch = useDispatch();
   const [postText, setPostText] = useState("");
-  const [postImg, setPostImg] = useState("");
+  const [postImg, setPostImg] = useState(null);
   const [postTags, setPostTags] = useState("");
 
   <div className="postForm">
     <form onSubmit={submitPost}>
       <div>
         <label htmlFor="post">Whatever your heart desires</label>
-        <input name="posttext" />
+        <textarea
+          name="posttext"
+          type="text"
+          placeholder="What's going on?"
+          value={postText}
+          onChange={updatePostText}
+        ></textarea>
+      </div>
+      <div>
+        <label htmlFor="img">Got a pic?</label>
+        <input
+          name="imgUrl"
+          type="file"
+          value={postImg}
+          onChange={updatePostImg}
+        />
+      </div>
+      <div>
+        <label htmlFor="post">Wanna Tag It?</label>
+        <input
+          name="postTag"
+          type="text"
+          placeholder="Add Tags here"
+          value={postTags}
+          onChange={updatePostTags}
+        />
       </div>
     </form>
   </div>;
