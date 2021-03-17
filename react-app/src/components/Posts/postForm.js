@@ -11,6 +11,13 @@ const PostForm = () => {
   const [postImg, setPostImg] = useState(null);
   const [postTags, setPostTags] = useState("");
 
+
+
+  const updateImageFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setPostImg(file);
+  };
+
   <div className="postForm">
     <form onSubmit={submitPost}>
       <div>
@@ -20,7 +27,7 @@ const PostForm = () => {
           type="text"
           placeholder="What's going on?"
           value={postText}
-          onChange={updatePostText}
+          onChange={(e) => setPostText(e.target.value)}
         ></textarea>
       </div>
       <div>
@@ -28,8 +35,8 @@ const PostForm = () => {
         <input
           name="imgUrl"
           type="file"
-          value={postImg}
-          onChange={updatePostImg}
+        //   value={postImg}
+          onChange={updateImageFile}
         />
       </div>
       <div>
@@ -39,7 +46,7 @@ const PostForm = () => {
           type="text"
           placeholder="Add Tags here"
           value={postTags}
-          onChange={updatePostTags}
+          onChange={(e) => setPostTags(e.target.value)}
         />
       </div>
     </form>
