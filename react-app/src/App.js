@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import HomePage from "./components/HomePage";
+import NavBar from "./components/Navbar";
 import DashBoard from "./components/Dashboard";
 
 import { authenticate } from "./store/session"
@@ -20,16 +21,16 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-  // const loaded = useSelector((state) => state.session.loaded);
+  const [loaded, setLoaded] = useState(false);
 
 
   useEffect(() => {
-    dispatch(authenticate());
+    dispatch(authenticate()).then(() => setLoaded(true));
   }, [dispatch]);
 
-  if (user) {
-    return null;
-  }
+  // if (user) {
+  //   return null;
+  // }
 
 
   // const [authenticated, setAuthenticated] = useState(false);
@@ -45,13 +46,13 @@ function App() {
   //   })();
   // }, []);
 
-  // if (!loaded) {
-  //   return null;
-  // }
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <BrowserRouter>
-    {/* <NavBar /> */}
+    <NavBar />
       <Switch>
         <Route path="/" exact>
           <HomePage />

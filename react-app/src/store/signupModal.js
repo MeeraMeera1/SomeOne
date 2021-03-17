@@ -1,6 +1,6 @@
-const SHOW = "modal/SHOW";
+const SHOW = "signupModal/SHOW";
 
-const HIDE = "modal/HIDE";
+const HIDE = "signupModal/HIDE";
 
 export const ShowModal = () => ({ type: SHOW });
 

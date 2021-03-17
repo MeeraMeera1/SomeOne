@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../store/session";
-import { ShowModal, HideModal } from "../../store/modal";
+import { ShowModal, HideModal } from "../../store/signupModal";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const modalDisplay = useSelector((state) => state.modal.display);
+  const modalDisplay = useSelector((state) => state.signupModal.display);
   
   const [errors, setErrors] = useState([]);
   const [displayName, setDisplayName] = useState("");
@@ -22,9 +22,8 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       dispatch(signUp(displayName, email, birthday, bio, password)).then(
         (errors) => {
-          setErrors(errors);
-        }
-      );
+          errors ? setErrors(errors) : dispatch(HideModal());
+      });
     }
   };
 
@@ -58,10 +57,10 @@ const SignUpForm = () => {
 
   return (
     <>
-      <button onClick={() => dispatch(ShowModal())}>Sign In</button>
+      <button onClick={() => dispatch(ShowModal())}>Sign Up</button>
       {modalDisplay ? (
         <div className="modal-background" onClick={() => dispatch(HideModal())}>
-          <form onSubmit={onSignUp}>
+          <form onSubmit={onSignUp} onClick={(e) => e.stopPropagation()}>
             <div>
               <label>Display Name</label>
               <input

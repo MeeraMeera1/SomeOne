@@ -3,14 +3,14 @@ import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { login } from "../../store/session";
-import { ShowModal, HideModal } from "../../store/modal";
+import { ShowModal, HideModal } from "../../store/loginModal";
 
 import "./LoginModal.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const modalDisplay = useSelector((state) => state.modal.display);
+  const modalDisplay = useSelector((state) => state.loginModal.display);
 
   const [errors, setErrors] = useState([]);
   const [displayName, setDisplayName] = useState("");
@@ -20,6 +20,7 @@ const LoginForm = () => {
     e.preventDefault();
     dispatch(login(displayName, password)).then((errors) => {
       setErrors(errors);
+      dispatch(HideModal())
     });
   };
 

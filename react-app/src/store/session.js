@@ -19,7 +19,7 @@ export const login = (displayName, password) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ displayName, password }),
+    body: JSON.stringify({ display_name:displayName, password }),
   });
   const user = await response.json();
   if (user.errors) {
@@ -36,7 +36,7 @@ export const signUp = (displayName, email, birthday, bio, password) => async (di
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      displayName,
+      display_name:displayName,
       email,
       birthday,
       bio,
@@ -49,6 +49,7 @@ export const signUp = (displayName, email, birthday, bio, password) => async (di
     return user.errors;
   }
   dispatch(setSession(user));
+  return null;
 };
 
 export const logout = () => async (dispatch) => {
