@@ -42,45 +42,31 @@ export const getPostById = (id) => async (dispatch) => {
 };
 
 export const createPost = (newpost) => async (dispatch) => {
-  const { post, image, tagId, displayNameId } = newpost;
+  const { post, image, tagId } = newpost;
   const formData = new FormData();
   formData.append("post", post);
   formData.append("imgUrl", image);
   formData.append("tag", tagId);
-  formData.append("displayname", displayNameId);
-  if (image) {
-    for (const list of image) {
-      for (let i = 0; i < list.length; i++) {
-        formData.append("images", list[i]);
-      }
-    }
-  }
+  if (image) formData.append("image", image);
   const response = await fetch("/api/posts/", {
     method: "POST",
     body: formData,
   });
   if (!response.ok) throw response;
-  const newpost = await response.json();
-  if (!post.errors) {
-    dispatch(setPost(newpost));
+  const postdata = await response.json();
+  if (!postdata.errors) {
+    dispatch(setPost(postdata));
   }
   return post;
 };
 
 export const updatePost = (fixpost) => async (dispatch) => {
-  const { post, image, tagId, displayNameId, postId } = fixpost;
+  const { post, image, tagId, postId } = fixpost;
   const formData = new FormData();
   formData.append("post", post);
   formData.append("imgUrl", image);
   formData.append("tag", tagId);
-  formData.append("displayname", displayNameId);
-  if (image) {
-    for (const list of image) {
-      for (let i = 0; i < list.length; i++) {
-        formData.append("images", list[i]);
-      }
-    }
-  }
+  if (image) formData.append("image", image);
   const response = await fetch(`/api/posts/${postId}`, {
     method: "PUT",
     body: formData,
