@@ -1,44 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import NavBar from "../Navbar";
-import { PageContainer } from "../PageContainer";
+import { InnerPageContainer, PageContainer } from "../PageContainer";
+import { FirstPage } from "./FirstPage";
+// import { SecondPage } from "./SecondPage";
+import { deviceSize } from "../responsive";
 
-const Background = styled.img`
-  height: 100vh;
+const ContentContainer = styled.div`
   width: 100%;
-  z-index: -1;
+  max-width: ${deviceSize.laptop}px;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
 `;
 
-const ButtonContainer = styled.div`
-  display: block;
-`;
-
-const CircleButton = styled.button`
-  border: none;
-  outline: none;
-  background-color: white;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-
-  &:hover {
-    background-color: black;
-  }
-`;
 
 const HomePage = () => {
-  const bgs = [
-    "https://someone01.s3.amazonaws.com/firstpage.png",
-    "https://someone01.s3.amazonaws.com/page2.png",
-    "https://someone01.s3.amazonaws.com/thirdpage.png",
-  ];
-
-  const [dynamicUrl, setDynamicUrl] = useState(0);
-
   return (
     <PageContainer>
-      <Background src={bgs[dynamicUrl]}>
+      <FirstPage>
         <NavBar />
-      </Background>
+      </FirstPage>
+      <InnerPageContainer>
+        <ContentContainer>
+          {/* <SecondPage /> */}
+        </ContentContainer>
+      </InnerPageContainer>
     </PageContainer> 
   );
 }
