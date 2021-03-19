@@ -1,31 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NavBar from "../Navbar";
-import { InnerPageContainer, PageContainer } from "../PageContainer";
-import { FirstPage } from "./FirstPage";
-import { SecondPage } from "./SecondPage";
-import { deviceSize } from "../responsive";
+import { PageContainer } from "../PageContainer";
 
-const ContentContainer = styled.div`
+const Background = styled.img`
+  height: 100vh;
   width: 100%;
-  max-width: ${deviceSize.laptop}px;
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
+  z-index: -1;
 `;
 
-
 const HomePage = () => {
+  const bgs = [
+    "https://someone01.s3.amazonaws.com/firstpage.png",
+    "https://someone01.s3.amazonaws.com/page2.png",
+    "https://someone01.s3.amazonaws.com/thirdpage.png",
+  ];
+
+  const [dynamicUrl, setDynamicUrl] = useState(0);
+
   return (
     <PageContainer>
-      <FirstPage>
+      <Background src={bgs[dynamicUrl]}>
         <NavBar />
-      </FirstPage>
-      <InnerPageContainer>
-        <ContentContainer>
-          <SecondPage />
-        </ContentContainer>
-      </InnerPageContainer>
+      </Background>
     </PageContainer> 
   );
 }

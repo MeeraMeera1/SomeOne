@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import HomePage from "./components/HomePage";
-import NavBar from "./components/Navbar";
 import DashBoard from "./components/Dashboard";
 
 import { authenticate } from "./store/session"
@@ -52,7 +51,6 @@ function App() {
 
   return (
     <BrowserRouter>
-    <NavBar />
       <Switch>
         <Route path="/" exact>
           <HomePage />
