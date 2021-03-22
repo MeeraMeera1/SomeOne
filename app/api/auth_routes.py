@@ -40,7 +40,7 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = UserProfile.query.filter(UserProfile.display_name == form.data['displayname']).first()
+        user = UserProfile.query.filter(UserProfile.display_name == form.data['display_name']).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -64,18 +64,17 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = UserProfile(
-            display_name=form.data['displayname'],
+            display_name=form.data['display_name'],
             email=form.data['email'],
             birthday=form.data['birthday'],
             password=form.data['password'],
-            bio=form.data['bio'],
-            user_type=form.data['userType']
+            bio=form.data['bio']
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/unauthorized')
