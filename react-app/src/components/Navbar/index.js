@@ -5,6 +5,7 @@ import LogoutButton from "../auth/LogoutButton";
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
 import styled from "styled-components";
+import Logo from "../../assets2/logo.svg";
 
 const SiteHeader = styled.header`
   position: sticky;
@@ -39,41 +40,36 @@ const NavWrapper = styled.ul`
 `;
 
 const NavItem = styled.li`
-  
+  margin: 0 0.5rem;
+  position: relative;
 `;
 
 
 
 const NavBar = () => {
   const user = useSelector((state) => state.session.user);
+  let sessionLinks;
+
+  if(!!user) {
+    sessionLinks = (
+      <>
+      <NavItem>
+        <LogoutButton />
+      </NavItem>
+      </>
+    )
+  }
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <SignUpForm />
-        </li>
-        <li>
-          <LoginForm />
-        </li>
-        {user ? (
-          <>
-            <li>
-              <NavLink to="/users" exact activeClassName="active">
-                Users
-              </NavLink>
-            </li>
-            <li>
-              <LogoutButton />
-            </li>
-          </>
-        ) : null}
-      </ul>
-    </nav>
+    <SiteHeader>
+      <SiteHeaderWrapper>
+        <a className="logo-anchor" href='/'>
+          <img className="logo" alt="someOne" src={Logo} />
+        </a>
+        <Nav>
+          <NavWrapper>{sessionLinks}</NavWrapper>
+        </Nav>
+      </SiteHeaderWrapper>
+    </SiteHeader>
   );
 };
 
