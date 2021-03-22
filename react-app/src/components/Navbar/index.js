@@ -20,7 +20,26 @@ const SiteHeaderWrapper = styled.div`
   align-items: center;
   max-width: 1240px;
   padding-left: 1rem;
-  padding:
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 10rem;
+  font-family: Hebrew;
+  text-decoration: none;
+`;
+
+const Nav = styled.nav`
+  display: block;
+`;
+
+const NavWrapper = styled.ul`
+  display: flex;
+  list-style: none;
+  box-sizing: border-box;
+`;
+
+const NavItem = styled.li`
+  
 `;
 
 
