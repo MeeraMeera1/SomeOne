@@ -58,6 +58,20 @@ const NavBar = () => {
       </NavItem>
       </>
     )
+  } else {
+    sessionLinks = (
+      <>
+      <NavItem>
+        <LoginForm />
+      </NavItem>
+      <NavItem>
+        <SignUpForm />
+      </NavItem>
+      <NavLink className="nav-item" to="/getstarted" exact={true} activeClassName='active'>
+        Get Started
+      </NavLink>
+      </>    
+    )
   }
   return (
     <SiteHeader>
