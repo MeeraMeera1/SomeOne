@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import HomePage from "./components/HomePage";
 import DashBoard from "./components/Dashboard";
+import NavBar from "./components/Navbar"
 
 import { authenticate } from "./store/session"
 // import NavBar from "./components/Navbar";
@@ -19,7 +20,7 @@ import { authenticate } from "./store/session"
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
   const [loaded, setLoaded] = useState(false);
 
 
@@ -51,6 +52,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path="/" exact>
           <HomePage />

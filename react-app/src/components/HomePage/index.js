@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import NavBar from "../Navbar";
 import { InnerPageContainer, PageContainer } from "../PageContainer";
 import { FirstPage } from "./FirstPage";
 // import { SecondPage } from "./SecondPage";
 import { deviceSize } from "../responsive";
+
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -18,9 +18,7 @@ const ContentContainer = styled.div`
 const HomePage = () => {
   return (
     <PageContainer>
-      <FirstPage>
-        <NavBar />
-      </FirstPage>
+      <FirstPage />
       <InnerPageContainer>
         <ContentContainer>
           {/* <SecondPage /> */}

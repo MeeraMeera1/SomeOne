@@ -14,6 +14,7 @@ const PageContainer = styled.div`
   background-position: 0px -150px;
   background-size: cover;
   align-content: space-between;
+  z-index: -1;
 `;
 
 const FirstPageTextCon = styled.div`
