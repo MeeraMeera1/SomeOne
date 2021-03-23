@@ -1,15 +1,17 @@
-.landing__container {
-  width: 85%;
-  padding-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
+.container {
+  width: 100vw;
+  height: 100%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 6fr 3fr;
+  grid-template-areas: "n m p" ;
 }
 
-.posts__feed {
+.side-nav {
+  background-color: blue;
   display: grid;
-  width: 100%;
-  margin-right: 4rem;
-  justify-content: center;
+  grid-area: n;
+  grid-template-rows: repeat(4, 2fr);
+  place-items: center;
 }
+
+
