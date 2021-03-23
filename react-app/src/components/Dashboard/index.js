@@ -4,8 +4,9 @@ import "./dash.css";
 
 
 const DashBoard = () => {
-  
-
+  const createPostForm = () => {
+    history.push('/postForm');
+  }
   return (
     <>
       <div className="container">
