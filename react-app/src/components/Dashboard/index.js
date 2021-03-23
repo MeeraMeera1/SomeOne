@@ -31,6 +31,7 @@ const DashBoard = () => {
         <div className="main">
           <h2>Users DashBoard</h2>
           <button className="create-post" onClick={createPostForm}>Create Post</button>
+          <PostContainer />
         </div>
         <div className="profile-sec"></div>
       </div>
