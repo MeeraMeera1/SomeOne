@@ -62,6 +62,11 @@ const SignUpForm = () => {
         <div className="modal-background" onClick={() => dispatch(HideModal())}>
           <form onSubmit={onSignUp} onClick={(e) => e.stopPropagation()}>
             <div>
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
+            <div>
               <label>Display Name</label>
               <input
                 type="text"
