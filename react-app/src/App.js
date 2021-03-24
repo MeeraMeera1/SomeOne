@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import HomePage from "./components/HomePage";
 import DashBoard from "./components/Dashboard";
+import PostForm from "./components/PostForm";
 import NavBar from "./components/Navbar"
 
 import { authenticate } from "./store/session"
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <Route path="/dashboard" exact>
           <DashBoard />
+        </Route>
+        <Route path="/postForm" exact>
+          <PostForm />
         </Route>
       </Switch>
       {/* <NavBar setAuthenticated={setAuthenticated} />

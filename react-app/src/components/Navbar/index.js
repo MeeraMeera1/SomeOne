@@ -125,6 +125,8 @@ const NavBtnLink = styled(LinkR)`
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
+  const user = useSelector((state) => state.session.user);
+  let sessionLink;
 
   const changeNav = () => {
     if (window.scrollY >= 80) {
@@ -142,35 +144,42 @@ const Navbar = ({ toggle }) => {
     scroll.scrollToTop();
   };
 
+  if(user) {
+    sessionLink = <LogoutButton /> ;
+  }
+
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <Nav>
-          <NavbarContainer>
-            <NavLogo onClick={toggleHome} to="/">
-              <img src={Logo} alt="someOne" />
-            </NavLogo>
-            <MobileIcon onClick={toggle}>
-              <FaBars />
-            </MobileIcon>
-            <NavMenu>
-              <NavItem>
-                <NavLinks>
-                  <LoginForm />
-                </NavLinks>
-              </NavItem>
-              <NavItem>
-                <NavLinks>
-                  <SignUpForm />
-                </NavLinks>
-              </NavItem>
-            </NavMenu>
-            <NavBtn>
-              <NavBtnLink to="/get-started">Get Started</NavBtnLink>
-            </NavBtn>
-          </NavbarContainer>
-        </Nav>
-      </IconContext.Provider>
+      <Nav>
+        <NavbarContainer>
+          <NavLogo onClick={toggleHome} to="/">
+            <img src={Logo} alt="someOne" />
+          </NavLogo>
+          <MobileIcon onClick={toggle}>
+            <FaBars />
+          </MobileIcon>
+          <NavMenu>
+            <NavItem>
+              <NavLinks>
+                <LoginForm />
+              </NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks>
+                <SignUpForm />
+              </NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks>
+                {sessionLink}
+              </NavLinks>
+            </NavItem>
+          </NavMenu>
+          <NavBtn>
+            <NavBtnLink to="/dashboard">Get Started</NavBtnLink>
+          </NavBtn>
+        </NavbarContainer>
+      </Nav>
     </>
   );
 };
