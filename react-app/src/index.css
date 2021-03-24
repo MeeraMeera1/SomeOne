@@ -1,4 +1,8 @@
 /* TODO Add site wide styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   width: 100%;

@@ -30,7 +30,7 @@ const PostForm = () => {
       newErrors = postOrErrors.errors;
       setErrors(newErrors);
     } else {
-      history.pushState("/dashboard");
+      history.push("/dashboard");
     }
   };
 
