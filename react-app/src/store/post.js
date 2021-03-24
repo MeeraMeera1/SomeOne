@@ -47,7 +47,7 @@ export const createPost = (newPost) => async (dispatch) => {
   formData.append("post", post);
   formData.append("imgUrl", imgUrl);
   if (imgUrl) formData.append("image", imgUrl);
-  const response = await fetch("/api/posts", {
+  const response = await fetch("/api/posts/create-post", {
     method: "POST",
     body: formData,
   });
@@ -60,11 +60,10 @@ export const createPost = (newPost) => async (dispatch) => {
 };
 
 export const updatePost = (fixpost) => async (dispatch) => {
-  const { post, image, tagId, postId } = fixpost;
+  const { post, image, postId } = fixpost;
   const formData = new FormData();
   formData.append("post", post);
   formData.append("imgUrl", image);
-  formData.append("tag", tagId);
   if (image) formData.append("image", image);
   const response = await fetch(`/api/posts/${postId}`, {
     method: "PUT",

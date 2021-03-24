@@ -19,7 +19,7 @@ def get_posts():
     else:
         return {'posts': []}
 
-@post_routes.route('/', methods=['POST'])
+@post_routes.route('/create-post', methods=['POST'])
 def create_post():
     form = CreatePostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
