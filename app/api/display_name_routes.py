@@ -32,6 +32,30 @@ def create_display_name():
     errors = validation_errors_to_error_messages(form.errors)
     return {"errors": errors}
 
+@display_name_routes.route("/<displaynameId>", methods=["PUT"])
+def update_display_name(display_name_id):
+    """
+    Update display name
+    """
+    form = DisplayNameForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    updated_name = DisplayName.query.get(display_name_id)
+
+    updated_name.display_name = form.data["display_name"]
+
+    db.session.add(updated_name)
+    db.session.commit()
+    return updated_name.to_dict()
+
+    errors = validation_errors_to_error_messages(form.errors)
+    return {"errors": errors}
+    
+
+
+
+
+
 
 
 
