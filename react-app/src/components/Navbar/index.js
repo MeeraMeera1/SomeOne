@@ -2,6 +2,47 @@ import React from "react";
 import Logo from "../../assets2/logo.svg"
 
 const NavBar = () => {
+  const sessionUser = useSelector((state) => state.session.user);
+  const width = useWindowWidth();
+
+  let sessionLinks;
+
+  if (!!sessionUser) {
+    if (width > 800) {
+      sessionLinks = (
+        <>
+          <LogoutButton />
+        </>
+      );
+    } else {
+      sessionLinks = null;
+    }
+  } else {
+    if (width > 800) {
+      sessionLinks = (
+        <>
+          <li className="nav__item">
+            <LoginFormModal />
+          </li>
+          <li className="nav__item">
+            <SignUpFormModal />
+          </li> 
+          <li className="nav__item">
+            <NavLink
+              className="nav__item"
+              to="/browse"
+              exact={true}
+              activeClassName="active"
+            >
+              Get Started
+            </NavLink>
+          </li>
+        </>
+      );
+    } else {
+      sessionLinks = <SessionLinksDropdown />;
+    }
+  }
 
   return (
     <header className="sticky top-0 left-0 right-0 z-20">

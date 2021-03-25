@@ -6,12 +6,12 @@ def seed_display_names():
     with open('./app/seeds/displaynames.json') as seeds:
         data = json.load(seeds)
         for name in data:
-            new_seed = Post(**name)
+            new_seed = DisplayName(**name)
             new_names.append(new_seed)
 
     db.session.add_all(new_names)
     db.session.commit()
 
 def undo_display_names():
-    db.session.execute('TRUNCATE displaynames RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE display_names RESTART IDENTITY CASCADE;')
     db.session.commit()
