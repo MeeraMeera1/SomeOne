@@ -6,6 +6,7 @@ class ChatRoom(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     room_name = db.Column(db.String(50), nullable=False)
+    chat_topic = db.Column(db.Text, nullable=False)
     display_name_id = db.Column(db.Integer, db.ForeignKey("display_names.id"), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
