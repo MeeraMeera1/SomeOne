@@ -3,15 +3,15 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { createPost } from "../../store/post";
+import "./postForm.css"
 // import styled from "styled-components";
 
 const PostForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector((state) => state.session.user);
-  const [postText, setPostText] = useState("");
-  const [postImg, setPostImg] = useState(null);
-  const [postTags, setPostTags] = useState("");
+  const [post, setPost] = useState("");
+  const [imgUrl, setImgUrl] = useState(null);
   const [errors, setErrors] = useState([]);
 
   const submitPost = async (e) => {
@@ -19,14 +19,12 @@ const PostForm = () => {
     setErrors([]);
     let newErrors = [];
 
-    const post = {
-      display_name_id: currentUser.id,
-      postText,
-      postImg,
-      postTags,
+    const newPost = {
+      post,
+      imgUrl
     };
 
-    const postOrErrors = await dispatch(createPost(post));
+    const postOrErrors = await dispatch(createPost(newPost));
 
     if (postOrErrors.errors) {
       newErrors = postOrErrors.errors;
@@ -38,10 +36,11 @@ const PostForm = () => {
 
   const updateImageFile = (e) => {
     const file = e.target.files[0];
-    if (file) setPostImg(file);
+    if (file) setImgUrl(file);
   };
 
-  <div className="postForm">
+  return (
+    <div className="postForm">
     <form onSubmit={submitPost}>
       <div>
         <label htmlFor="post">Whatever your heart desires</label>
@@ -49,8 +48,8 @@ const PostForm = () => {
           name="posttext"
           type="text"
           placeholder="What's going on?"
-          value={postText}
-          onChange={(e) => setPostText(e.target.value)}
+          value={post}
+          onChange={(e) => setPost(e.target.value)}
         ></textarea>
       </div>
       <div>
@@ -63,16 +62,6 @@ const PostForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="post">Wanna Tag It?</label>
-        <input
-          name="postTag"
-          type="text"
-          placeholder="Add Tags here"
-          value={postTags}
-          onChange={(e) => setPostTags(e.target.value)}
-        />
-      </div>
-      <div>
         <button type="submit">Submit</button>
       </div>
       <div>
@@ -81,7 +70,8 @@ const PostForm = () => {
         ))}
       </div>
     </form>
-  </div>;
+  </div>
+  );
 };
 
 export default PostForm;

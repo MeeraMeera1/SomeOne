@@ -41,14 +41,13 @@ export const getPostById = (id) => async (dispatch) => {
   return post;
 };
 
-export const createPost = (newpost) => async (dispatch) => {
-  const { post, image, tagId } = newpost;
+export const createPost = (newPost) => async (dispatch) => {
+  const { post, imgUrl} = newPost;
   const formData = new FormData();
   formData.append("post", post);
-  formData.append("imgUrl", image);
-  formData.append("tag", tagId);
-  if (image) formData.append("image", image);
-  const response = await fetch("/api/posts/", {
+  formData.append("imgUrl", imgUrl);
+  if (imgUrl) formData.append("image", imgUrl);
+  const response = await fetch("/api/posts", {
     method: "POST",
     body: formData,
   });

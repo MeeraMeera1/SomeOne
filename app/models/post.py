@@ -7,13 +7,11 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post = db.Column(db.Text)
     imgUrl = db.Column(db.String(2083))
-    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"))
     display_name_id = db.Column(db.Integer, db.ForeignKey("display_names.id"), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     display_name = db.relationship("DisplayName", foreign_keys=[display_name_id], back_populates="post")
-    tag = db.relationship("Tag", foreign_keys=[tag_id], back_populates="post")
     comments = db.relationship("Comment", back_populates="post")
     likes = db.relationship("PostLike", back_populates="post")
     
