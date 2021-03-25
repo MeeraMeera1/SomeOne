@@ -12,6 +12,6 @@ def seed_display_names():
     db.session.add_all(new_names)
     db.session.commit()
 
-def undo_posts():
+def undo_display_names():
     db.session.execute('TRUNCATE displaynames RESTART IDENTITY CASCADE;')
     db.session.commit()
