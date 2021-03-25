@@ -50,6 +50,21 @@ def update_display_name(display_name_id):
 
     errors = validation_errors_to_error_messages(form.errors)
     return {"errors": errors}
+
+@display_name_routes.route("/<displaynameId>", methods=["DELETE"])
+def delete_name(display_name_id):
+    """
+    Delete name
+    """
+
+    name_to_delete = DisplayName.query.get(display_name_id)
+    if name_to_delete:
+        db.session.delete(name_to_delete)
+        db.session.commit()
+        return "Deleted"
+    else:
+        print(f"-------- no name found with id {display_name_id} -------- ")
+        return {"errors": "No name found with given id"}
     
 
 
