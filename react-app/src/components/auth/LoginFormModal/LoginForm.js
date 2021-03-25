@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { login } from "../../../store/session";
 
-import "./LoginModal.css";
-
 const LoginForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -18,7 +16,6 @@ const LoginForm = () => {
     e.preventDefault();
     dispatch(login(displayName, password)).then((errors) => {
       setErrors(errors);
-      dispatch(HideModal());
     });
   };
 

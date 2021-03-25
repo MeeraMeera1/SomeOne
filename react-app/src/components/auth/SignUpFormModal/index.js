@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "../../../context/ModalAndAuth";
+import { Modal } from "../../../context/Modal";
 import SignUpForm from "./SignUpForm";
 
 export default function SignUpFormModal() {

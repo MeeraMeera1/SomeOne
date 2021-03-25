@@ -20,7 +20,7 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       dispatch(signUp(displayName, email, birthday, bio, password)).then(
         (errors) => {
-          errors ? setErrors(errors) : dispatch(HideModal());
+          setErrors(errors);
         }
       );
     }
