@@ -9,9 +9,8 @@ import ReactDOM from "react-dom";
 
 
 const ModalContext = createContext();
-export const useModalContext = () => useContext(ModalContext);
 
-export function ModalProvider({ children }) {
+const ModalProvider = ({ children }) => {
   const modalRef = useRef();
   const [value, setValue] = useState();
 
@@ -21,7 +20,7 @@ export function ModalProvider({ children }) {
 
   return (
     <>
-      <ModalContext.Provider value={{ modalNode: value }}>
+      <ModalContext.Provider value={value}>
         {children}
       </ModalContext.Provider>
       <div ref={modalRef} />
@@ -30,7 +29,7 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal({ onClose, children }) {
-  const { modalNode } = useModalContext();
+  const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
 
   return ReactDOM.createPortal(
@@ -39,7 +38,7 @@ export function Modal({ onClose, children }) {
         className="fixed top-0 right-0 left-0 bottom-0 bg-dblueblack"
         onClick={onClose}
       />
-      <div className="text-white absolute">{children}</div>
+      <div className="text-white absolute w-auto my-auto">{children}</div>
     </div>,
     modalNode
   );
