@@ -38,7 +38,7 @@ const NavBar = () => {
           <li className="nav__item">
             <SignUpFormModal />
           </li> */}
-          <li className="nav__item">
+          {/* <li className="nav__item">
             <NavLink
               className="nav__item"
               to="/browse"
@@ -52,7 +52,7 @@ const NavBar = () => {
       );
     } else {
       sessionLinks = <SessionLinksDropdown />;
-    }
+    } */}
   }
 
   return (
