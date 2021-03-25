@@ -8,7 +8,14 @@ const LogoutButton = () => {
 
   const onLogout = () => dispatch(logout());
 
-  return <button onClick={onLogout}>Logout</button>;
+  return (
+    <button
+      className="text-white border-none bg-transparent rounded-lg hover:bg-white text-dblue"
+      onClick={onLogout}
+    >
+      Logout
+    </button>
+  );
 };
 
 export default LogoutButton;

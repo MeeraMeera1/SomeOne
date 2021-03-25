@@ -15,6 +15,7 @@ class DisplayName(db.Model):
     post = db.relationship("Post", back_populates="display_name")
     comment_likes = db.relationship("CommentLike", back_populates="display_name")
     post_likes = db.relationship("PostLike", back_populates="display_name")
+    chat = db.relationship("ChatRoom", back_populates="display_name")
 
     def to_dict(self):
         return {
