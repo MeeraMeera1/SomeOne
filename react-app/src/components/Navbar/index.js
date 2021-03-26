@@ -1,70 +1,109 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { FaBars } from 'react-icons/fa';
+import { IconContext } from 'react-icons/lib';
+import { animateScroll as scroll } from 'react-scroll';
+import {
+  MobileIcon,
+  Nav,
+  NavbarContainer,
+  NavItem,
+  NavLinks,
+  NavLogo,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from "./NavbarElements";
 import Logo from "../../assets2/logo.svg"
+import SignUpFormModal from "../auth/SignUpFormModal";
+import LoginFormModal from "../auth/LoginFormModal";
 
-const NavBar = () => {
-//   const sessionUser = useSelector((state) => state.session.user);
-//   const width = useWindowWidth();
 
-//   let sessionLinks;
+const Navbar = ({ toggle }) => {
+  const [scrollNav, setScrollNav] = useState(false);
 
-//   if (!!sessionUser) {
-//     if (width > 800) {
-//       sessionLinks = (
-//         <>
-//           <LogoutButton />
-//         </>
-//       );
-//     } else {
-//       sessionLinks = null;
-//     }
-//   } else {
-//     if (width > 800) {
-//       sessionLinks = (
-//         <>
-//           <li className="nav__item">
-//             <LoginFormModal />
-//           </li>
-//           <li className="nav__item">
-//             <SignUpFormModal />
-//           </li> 
-//           <li className="nav__item">
-//             <NavLink
-//               className="nav__item"
-//               to="/browse"
-//               exact={true}
-//               activeClassName="active"
-//             >
-//               Get Started
-//             </NavLink>
-//           </li>
-//         </>
-//       );
-//     } else {
-//       sessionLinks = <SessionLinksDropdown />;
-//     }
-//   }
+  const changeNav = () => {
+    if (window.scrollY >= 80) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', changeNav);
+  }, []);
+
+  const toggleHome = () => {
+    scroll.scrollToTop();
+  };
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-20">
-      <nav className="container mx-auto px-6 md:px-12 py-4">
-        <div className="md:flex justify-between items-center">
-          <div className="flex justify-between items-center">
-            <a href="/">
-              <img className="mr-2 fill-current" src={Logo} />
-            </a>
-            <div className="hidden md:flex items-center">
-              <a
-                href="/dashboard"
-                className="block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase mt-10"
-              >
-                Get Started
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <>
+      <IconContext.Provider value={{ color: '#fff' }}>
+        <Nav scrollNav={scrollNav}>
+          <NavbarContainer>
+            <NavLogo onClick={toggleHome} to='/'>
+             <img src={Logo} alt="someOne"/>
+            </NavLogo>
+            <MobileIcon onClick={toggle}>
+              <FaBars />
+            </MobileIcon>
+            <NavMenu>
+              <NavItem>
+                <NavLinks
+                  to='about'
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact='true'
+                  offset={-80}
+                >
+                  About
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks
+                  to='discover'
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact='true'
+                  offset={-80}
+                >
+                  Discover
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact='true'
+                  offset={-80}
+                >
+                  <LoginFormModal />
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact='true'
+                  offset={-80}
+                >
+                  <SignUpFormModal />
+                </NavLinks>
+              </NavItem>
+            </NavMenu>
+            <NavBtn>
+              <NavBtnLink to='/dashboard'>Get Started</NavBtnLink>
+            </NavBtn>
+          </NavbarContainer>
+        </Nav>
+      </IconContext.Provider>
+    </>
   );
 };
 
-export default NavBar;
+export default Navbar;

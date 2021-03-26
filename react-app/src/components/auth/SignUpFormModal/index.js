@@ -8,7 +8,7 @@ export default function SignUpFormModal() {
   return (
     <>
       <button
-        className="text-white border-none bg-transparent rounded-lg hover:bg-white text-dblue"
+        className="text-white border-none bg-transparent rounded-lg hover:bg-white hover:text-dblue"
         onClick={() => setShowModal(true)}
       >
         Sign Up
