@@ -12,6 +12,8 @@ html, body {
   right: 0;
   display: flex;
   flex-direction: column;
+  background-color: #151E3F;
+  color: #EBA2CD;
 }
 
 #login {

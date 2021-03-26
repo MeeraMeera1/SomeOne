@@ -12,8 +12,8 @@ function ChatInput() {
     }
   }, [chatData.selectedChatroom, input]);
 
-  const onSubmit = (ev) => {
-    if (ev.key !== "Enter") {
+  const onSubmit = (e) => {
+    if (e.key !== "Enter") {
       return;
     }
     chatData.selectedChatroom.sendMessage(input.current.value);

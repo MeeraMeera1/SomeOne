@@ -24,7 +24,7 @@ class DisplayName(db.Model):
             "userId": self.user_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "user": self.user.to_dict(),
+            "user": self.user,
             "comments": self.comments.to_dict(),
             "post": self.post.to_dict(),
             "comment_likes": self.comment_likes.to_dict(),

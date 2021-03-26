@@ -1,11 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { ChatContext } from "./index.js";
 
 function ChatLogin() {
+  const history = useHistory();
   const chatData = React.useContext(ChatContext);
   const userInput = React.useRef();
   const [error, setError] = React.useState(false);
-  const login = (e) => {
+  const [user, setUser] = React.useState({
+    api: null,
+    username: null,
+    chatrooms: [],
+  });
+  
+  const chatLogin = (e) => {
     if (e.type === "keyup" && e.key !== "Enter") {
       return;
     }
@@ -16,19 +24,19 @@ function ChatLogin() {
 
   if (chatData.user.display_name === null) {
     return (
-      <div id="login">
+      <div id="chatLogin">
         <div>
           DisplayName:&nbsp;
-          <input type="text" ref={userInput} onKeyUp={login} autoFocus />
+          <input type="text" ref={userInput} onKeyUp={chatLogin} autoFocus />
           &nbsp;
-          <button onClick={login}>Login</button>
+          <button onClick={chatLogin}>Login</button>
           {error && <>&nbsp;Login error, please try again.</>}
         </div>
       </div>
     );
   } else {
     return (
-      <div id="login">
+      <div id="chatLogin">
         <div>
           Username: <b>{chatData.user.display_name}</b>&nbsp;
           <button onClick={logoutChat}>Logout</button>

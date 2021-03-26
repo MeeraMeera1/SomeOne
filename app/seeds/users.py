@@ -8,7 +8,6 @@ def seed_users():
                 password='password', bio='join the void', user_type=False)
 
     db.session.add(demo)
-
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
