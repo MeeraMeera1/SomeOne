@@ -11,7 +11,7 @@
   margin-right: 5px;
   padding: 5px;
   border: 0;
-  background: #fff;
+  background: #151E3F;
 }
 
 .chatroom:hover {
@@ -23,5 +23,5 @@
 }
 
 .chatroom.selected {
-  background: #ddd;
+  background: #E4E5C3;
 }

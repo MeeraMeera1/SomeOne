@@ -4,7 +4,7 @@ import ChatLogin from "./ChatLogin";
 import ChatRooms from "./ChatRooms";
 import ChatLog from "./ChatLog";
 import ChatInput from "./ChatInput";
-import Logo from "../../assets2/logo.svg"
+// import Logo from "../../assets2/logo.svg"
 import "./index.css";
 
 export const ChatContext = React.createContext();

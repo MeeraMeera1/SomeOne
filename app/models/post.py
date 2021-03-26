@@ -20,12 +20,10 @@ class Post(db.Model):
             "id": self.id,
             "post": self.post,
             "imgUrl": self.imgUrl,
-            "tag_id": self.tag_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "displaynameId": self.display_name_id,
             "display_name": self.display_name.to_dict(),
-            "tag": self.tag.to_dict(),
             "comments": self.comments.to_dict(),
             "likes": self.likes.to_dict()
         }

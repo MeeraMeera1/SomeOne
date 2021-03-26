@@ -14,8 +14,8 @@ import {
   NavBtnLink,
 } from "./NavbarElements";
 import Logo from "../../assets2/logo.svg"
-import SignUpFormModal from "../auth/SignUpFormModal";
-import LoginFormModal from "../auth/LoginFormModal";
+// import SignUpFormModal from "../auth/SignUpFormModal";
+// import LoginFormModal from "../auth/LoginFormModal";
 
 
 const Navbar = ({ toggle }) => {
@@ -75,29 +75,31 @@ const Navbar = ({ toggle }) => {
               </NavItem>
               <NavItem>
                 <NavLinks
+                  to="/login"
                   smooth={true}
                   duration={500}
                   spy={true}
                   exact='true'
                   offset={-80}
                 >
-                  <LoginFormModal />
+                  Log in
                 </NavLinks>
               </NavItem>
               <NavItem>
                 <NavLinks
+                  to="/signup"
                   smooth={true}
                   duration={500}
                   spy={true}
                   exact='true'
                   offset={-80}
                 >
-                  <SignUpFormModal />
+                  Sign Up
                 </NavLinks>
               </NavItem>
             </NavMenu>
             <NavBtn>
-              <NavBtnLink to='/dashboard'>Get Started</NavBtnLink>
+              <NavBtnLink to='/chat'>Get Started</NavBtnLink>
             </NavBtn>
           </NavbarContainer>
         </Nav>

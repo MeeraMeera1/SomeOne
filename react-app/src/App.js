@@ -8,6 +8,10 @@ import Chat from "./components/Chat";
 import NavBar from "./components/Navbar";
 
 import { authenticate } from "./store/session"
+import { getNames } from "./store/displayname";
+import { getPosts } from "./store/post";
+import { getUsers } from "./store/user";
+import LoginForm from "./components/auth/LoginFormModal";
 // import NavBar from "./components/Navbar";
 // import React, { useState, useEffect } from "react";
 // import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -27,6 +31,9 @@ function App() {
 
 
   useEffect(() => {
+    dispatch(getNames());
+    dispatch(getPosts());
+    dispatch(getUsers());
     dispatch(authenticate()).then(() => setLoaded(true));
   }, [dispatch]);
 
@@ -58,6 +65,12 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <HomePage />
+        </Route>
+        <Route path="/login" exact>
+          <LoginForm />
+        </Route>
+        <Route path="/signup" exact>
+          <LoginForm />
         </Route>
         <Route path="/dashboard" exact>
           <DashBoard />
