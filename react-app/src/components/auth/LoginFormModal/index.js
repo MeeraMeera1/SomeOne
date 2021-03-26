@@ -7,7 +7,7 @@ export default function LoginFormModal() {
 
   return (
     <>
-      <button className="text-white border-none bg-transparent rounded-lg hover:bg-white text-dblue" onClick={() => setShowModal(true)}>
+      <button className="text-white border-none bg-transparent rounded-lg hover:bg-white hover:text-dblue" onClick={() => setShowModal(true)}>
         Log In
       </button>
       {showModal && (

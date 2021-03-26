@@ -19,6 +19,5 @@ export const InnerPageContainer = styled.div`
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
   min-height: 70vh;
-  display: flex;
-  flex-direction: column;
+  position: static;
 `;

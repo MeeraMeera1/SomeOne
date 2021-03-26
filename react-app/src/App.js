@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import HomePage from "./components/HomePage";
 import DashBoard from "./components/Dashboard";
 import PostForm from "./components/PostForm";
-import NavBar from "./components/Navbar"
+import Chat from "./components/Chat";
+import NavBar from "./components/Navbar";
 
 import { authenticate } from "./store/session"
 // import NavBar from "./components/Navbar";
@@ -53,7 +54,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
         <Route path="/" exact>
           <HomePage />
@@ -63,6 +64,9 @@ function App() {
         </Route>
         <Route path="/postForm" exact>
           <PostForm />
+        </Route>
+        <Route path="/chat" exact>
+          <Chat />
         </Route>
       </Switch>
       {/* <NavBar setAuthenticated={setAuthenticated} />

@@ -2,15 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { InnerPageContainer, PageContainer } from "../PageContainer";
 import { FirstPage } from "./FirstPage";
-// import { SecondPage } from "./SecondPage";
+import { SecondPage } from "./SecondPage";
+import { ThirdPage } from "./ThirdPage";
 
 
 
 const ContentContainer = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
 `;
 
 
@@ -20,10 +18,13 @@ const HomePage = () => {
       <FirstPage />
       <InnerPageContainer>
         <ContentContainer>
-          {/* <SecondPage /> */}
+          <SecondPage />
         </ContentContainer>
       </InnerPageContainer>
-    </PageContainer> 
+      <ContentContainer>
+        <ThirdPage />
+      </ContentContainer>
+    </PageContainer>
   );
 }
 
