@@ -5,12 +5,14 @@ import session from "./session";
 import user from "./user";
 import post from "./post";
 import comment from "./comment";
+import displayName from "./displayname";
 
 const rootReducer = combineReducers({
   session,
   user,
   post,
-  comment
+  comment,
+  displayName,
 });
 
 let enhancer;
