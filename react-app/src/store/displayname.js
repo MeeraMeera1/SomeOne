@@ -80,3 +80,27 @@ export const deleteName = (nameId) => async (dispatch) => {
         dispatch(remove(nameId));
     }
 };
+
+const initState = {};
+
+const displayNameReducer = (state = initState, action) => {
+    const newState = {...state};
+
+    switch (action.type) {
+      case LOAD_NAMES:
+        for (let name of action.names) {
+          newState[name.id] = name;
+        }
+        return newState;
+      case CREATE_NAME:
+        newState[action.name.id] = action.name;
+        return newState;
+      case REMOVE_PET:
+        delete newState[Number(action.nameId)];
+        return newState;
+      default:
+        return newState;
+    }    
+};
+
+export default displayNameReducer;

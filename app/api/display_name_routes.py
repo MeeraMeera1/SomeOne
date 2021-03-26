@@ -23,6 +23,7 @@ def create_display_name():
 
     if form.validate_on_submit():
         new_display_name = DisplayName(
+            nameId = form.data["nameId"],
             display_name = form.data["display_name"], 
         )
         db.session.add(new_display_name)
