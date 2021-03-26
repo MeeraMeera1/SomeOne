@@ -18,3 +18,12 @@ const remove = (nameId) => ({
     type: REMOVE_NAME,
     nameId
 })
+
+//thunks
+export const getNames = () => async (dispatch) => {
+    const res = await fetch('/api/displaynames');
+    const json = await res.json();
+    if (res.ok) {
+        dispatch(load(json.names));
+    }
+};
