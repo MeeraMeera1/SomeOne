@@ -95,7 +95,7 @@ const displayNameReducer = (state = initState, action) => {
       case CREATE_NAME:
         newState[action.name.id] = action.name;
         return newState;
-      case REMOVE_PET:
+      case REMOVE_NAME:
         delete newState[Number(action.nameId)];
         return newState;
       default:

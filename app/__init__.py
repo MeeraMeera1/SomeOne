@@ -15,6 +15,8 @@ from .models import db, UserProfile
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.post_routes import post_routes
+from .api.display_name_routes import display_name_routes
+from .api.comment_routes import comment_routes
 
 from .seeds import seed_commands
 
@@ -124,7 +126,7 @@ def delete(name):
 def login():
     payload = request.get_json(force=True)
     display_name = payload.get('display_name')
-    if not username:
+    if not display_name:
         abort(401)
 
     # create the user (if it does not exist yet)
@@ -143,7 +145,7 @@ def login():
     conversations = twilio_client.conversations.conversations.list()
     for conversation in conversations:
         try:
-            conversation.participants.create(identity=username)
+            conversation.participants.create(identity=display_name)
         except TwilioRestException as exc:
             if exc.status != 409:
                 raise
@@ -154,7 +156,7 @@ def login():
     twilio_api_key_secret = os.environ.get('TWILIO_API_KEY_SECRET')
     service_sid = conversations[0].chat_service_sid
     token = AccessToken(twilio_account_sid, twilio_api_key_sid,
-                        twilio_api_key_secret, identity=username)
+                        twilio_api_key_secret, identity=display_name)
     token.add_grant(ChatGrant(service_sid=service_sid))
 
     # send a response
